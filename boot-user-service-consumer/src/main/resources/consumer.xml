@@ -1,0 +1,15 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+    <dubbo:protocol name="dubbo" port="20880"/>
+    <dubbo:consumer check="true" />
+    <!-- 全局超时配置 -->
+    <dubbo:provider timeout="5000" />
+
+    <!-- 指定接口以及特定方法超时配置 -->
+    <dubbo:reference interface="com.db.service.UserService" timeout="3000">
+        <dubbo:method name="getUserAddressList" timeout="2000" />
+    </dubbo:reference>
+</beans>
